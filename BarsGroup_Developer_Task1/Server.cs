@@ -9,34 +9,12 @@
         {
             lock (_lockAddCount)
                 return _count;
-            //object __lockObj = _lockAddCount;
-            //bool __lockWasTaken = false;
-            //try
-            //{
-            //    Monitor.Enter(__lockObj, ref __lockWasTaken);
-            //    return _count;
-            //}
-            //finally
-            //{
-            //    if (__lockWasTaken) Monitor.Exit(__lockObj);
-            //}
         }
 
         public static void AddToCount()
         {
             lock (_lockAddCount)
                 _count++;
-            //object __lockObj = _lockAddCount;
-            //bool __lockWasTaken = false;
-            //try
-            //{
-            //    Monitor.Enter(__lockObj, ref __lockWasTaken);
-            //    _count += Convert.ToInt32(Console.ReadLine());
-            //}
-            //finally
-            //{
-            //    if (__lockWasTaken) Monitor.Exit(__lockObj);
-            //}
         }
     }
 }
