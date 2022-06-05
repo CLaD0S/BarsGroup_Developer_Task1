@@ -12,18 +12,15 @@
             {
                 thread = new(() => ParallelFlow.ParallelGetCount(10000))
                 {
-                    Name = i.ToString()
+                    Name = "Читатель_" + i.ToString()
                 };
                 thread.Start();
-
             }
             thread = new(() => ParallelFlow.ParallelAddCount(100))
             {
-                Name = 6.ToString()
+                Name = "Писатель"
             };
             thread.Start();
-            Console.ReadKey();
-            Console.WriteLine(Server.GetCount());
 
             Console.ReadKey();
         }
