@@ -1,20 +1,36 @@
 ﻿namespace BarsGroup_Developer_Task1
 {
+    using System.Threading;
     internal class Server
     {
-        private static int _count;
-        private static readonly object _lockAddCount = new();
+        private static ReaderWriterLockSlim _readerWriterLockSlim = new ReaderWriterLockSlim();
+        private static volatile int _count;
 
         public static int GetCount()
         {
-            lock (_lockAddCount)
+            _readerWriterLockSlim.EnterReadLock();
+            try
+            {
                 return _count;
+            }
+            finally
+            {
+                _readerWriterLockSlim.ExitReadLock();
+            }
         }
 
         public static void AddToCount()
         {
-            lock (_lockAddCount)
-                _count++;
+            _readerWriterLockSlim.EnterWriteLock();
+            try
+            {
+                Thread.Sleep(1000);
+                Interlocked.Increment(ref _count);
+            }
+            finally
+            {
+                _readerWriterLockSlim.ExitWriteLock();
+            }   
         }
     }
 }

@@ -2,26 +2,29 @@
 {
     using System;
     using System.Threading;
+
     internal class Program
     {
         static void Main()
         {
-            for (int i = 0; i < 10; i++)
+            Thread thread;
+            for (int i = 0; i < 5; i++)
             {
-                Thread task = new(ParallelFlow.ParallelAddCount)
+                thread = new(() => ParallelFlow.ParallelGetCount(10000))
                 {
                     Name = i.ToString()
                 };
-                task.Start();
+                thread.Start();
+
             }
-            for (int i = 0; i < 10; i++)
+            thread = new(() => ParallelFlow.ParallelAddCount(100))
             {
-                Thread task = new(ParallelFlow.ParallelGetCount)
-                {
-                    Name = i.ToString()
-                };
-                task.Start();
-            }
+                Name = 6.ToString()
+            };
+            thread.Start();
+            Console.ReadKey();
+            Console.WriteLine(Server.GetCount());
+
             Console.ReadKey();
         }
     }

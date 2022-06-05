@@ -1,25 +1,24 @@
 ﻿namespace BarsGroup_Developer_Task1
 {
-    using System;
-    using System.Threading;
-
     internal class ParallelFlow
     {
-        public static void ParallelAddCount()
+        public static void ParallelGetCount(int countRead)
         {
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < countRead; i++)
+            {
+                //Console.WriteLine("Читатель " + Thread.CurrentThread.Name + " читает " + Server.GetCount());
+                Server.GetCount();
+            }
+            //Console.WriteLine("Читатель " + Thread.CurrentThread.Name + " прочел!");
+        }
+        public static void ParallelAddCount(int countWrite)
+        {
+            for (int i = 0; i < countWrite; i++)
             {
                 Server.AddToCount();
+                //Console.WriteLine("Писатель " + Thread.CurrentThread.Name + " записал " + Server.GetCount());
             }
-            Console.WriteLine("Писатель " + Thread.CurrentThread.Name + " закончил!");
-        }
-        public static void ParallelGetCount()
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                Thread.Sleep(10);
-            }
-            Console.WriteLine("Читатель " + Thread.CurrentThread.Name + " прочел!");
+            //Console.WriteLine("Писатель " + Thread.CurrentThread.Name + " закончил!");
         }
     }
 }
