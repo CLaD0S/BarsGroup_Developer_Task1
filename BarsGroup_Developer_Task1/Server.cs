@@ -24,7 +24,6 @@
             _readerWriterLockSlim.EnterWriteLock();
             try
             {
-                Thread.Sleep(1000);
                 Interlocked.Increment(ref _count);
             }
             finally
