@@ -1,4 +1,6 @@
-﻿namespace BarsGroup_Developer_Task1
+﻿using System;
+
+namespace BarsGroup_Developer_Task1
 {
     internal class ParallelFlow
     {
