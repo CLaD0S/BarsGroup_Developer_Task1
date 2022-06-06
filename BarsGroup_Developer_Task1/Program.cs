@@ -10,16 +10,10 @@
             Thread thread;
             for (int i = 0; i < 5; i++)
             {
-                thread = new(() => ParallelFlow.ParallelGetCount(10000))
-                {
-                    Name = "Читатель_" + i.ToString()
-                };
+                thread = new(() => ParallelFlow.ParallelGetCount(10000));
                 thread.Start();
             }
-            thread = new(() => ParallelFlow.ParallelAddCount(100))
-            {
-                Name = "Писатель"
-            };
+            thread = new(() => ParallelFlow.ParallelAddCount(100));
             thread.Start();
 
             Console.ReadKey();
